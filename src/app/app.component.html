@@ -1,0 +1,124 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+ <div *ngIf="!isUserLogined"  id="centerDiv" >
+    <table>
+      <tr><td>User Name</td><td><input type="text" [(ngModel)]="user.userName"  placeholder="Enter Username"  required/></td></tr>
+      <tr><td>User Password</td><td><input type="password" [(ngModel)]="user.password"  placeholder="Enter Password" required /></td></tr>
+      <tr><td colspan="2" style="text-align : center;"><input (click)="loginUser()" type="button" value="SUBMIT"/><input type="reset" value="RESET"/></td></tr>
+    </table>
+
+ </div>
+
+ <div *ngIf="isUserLogined">
+          <div class="btn-group">
+            <input class="button" type="button" value="Add Work-Status" (click) = "addNewWorkStatus()"/>
+            <input class="button" type="button" value="View All Work-Status" (click) = "viewAllWorkStatus()"/>
+            <input class="button" type="button" value="Download report" (click) = "generateReport()"/>
+            <input class="buttonright" type="button" value="log out" (click) = "logOut()">
+          </div>
+            
+            
+            <br><br>
+            <div *ngIf="isAddOrEdit">
+
+                <table>
+                    <tr><td>Work Id</td> <td><input type="text" [(ngModel)]="workFlow.workId"/></td></tr>
+                    <tr><td>User Id</td><td><input type="text" [(ngModel)]="workFlow.userId"/></td></tr>
+                    <tr><td>Date Reported</td><td><input type="text" [(ngModel)]="workFlow.dateReported"/></td></tr>
+                    <tr><td>Date Resolved</td><td><input type="text" [(ngModel)]="workFlow.dateResolved"/></td></tr>
+                    <tr><td>Model No</td><td><input type="text" [(ngModel)]="workFlow.modelNo"/></td></tr>
+                    <tr><td>Service Tag</td><td><input type="text" [(ngModel)]="workFlow.serviceTag"/></td></tr>
+                    <tr><td>Problem Reported</td>
+                        <td>
+                        <select type="text" [(ngModel)]="workFlow.problemReported">
+                            <option *ngFor="let obj of deviceType" value="{{obj}}">{{obj}}</option>
+                        </select>
+                        </td>
+                    </tr>
+                    <tr><td>User Name</td><td><input type="text" [(ngModel)]="workFlow.userName"/></td></tr>
+                    <tr><td>Vertical</td><td><select type="text" [(ngModel)]="workFlow.vertical">
+                        <option *ngFor="let loc of location" value="{{loc}}">{{loc}}</option>
+                    </select></td></tr>
+                    <tr><td>Serial-Number</td><td><input type="text" [(ngModel)]="workFlow.serialNumber"/></td></tr>
+                    <tr><td>Solution Provided</td> <td><input type="text" [(ngModel)]="workFlow.solutionProvided"/></td></tr>
+                    <tr><td>Fulty Part PPID</td><td><input type="text" [(ngModel)]="workFlow.fultyPartPdid"/></td></tr>
+                    <tr><td>New Part PPID</td><td><input type="text" [(ngModel)]="workFlow.newPartPpid"/></td></tr>
+                    <tr><td>No of Parts Requested</td><td><input type="text" [(ngModel)]="workFlow.noofPartsRequested"/></td></tr>
+                    <tr><td>Re Name</td><td><input type="text" [(ngModel)]="workFlow.reName"/></td></tr>
+                    <tr><td>Part Returned</td><td><input type="text" [(ngModel)]="workFlow.partReturned"/></td></tr>
+                    <tr><td colspan="2"><td colspan="2"><input (click)="saveOrUpdateWorkFlowStatus()" type="button" value="SUBMIT"/><input type="reset" value="RESET" (click)="workFlowReset()"/></td></tr>
+                </table>
+            </div>
+            
+            <div *ngIf="isWorkFlowShow && listUsers != undefined  && listUsers.length > 0">
+              <table id="customers">
+                <tr>
+                  <th>Edit / Delete</th>
+                  <th>Work Id</th><th>User Id</th><th>Date Reported</th>
+                  <th>Date Resolved</th><th>Model No</th><th>Service Tag</th><th>Problem Reported</th><th>User Name</th>
+                  <th>Vertical</th>
+                  <th>Serial-Number</th>
+                  <th>Solution Provided</th>
+                  <th>Fulty Part PPID</th>
+                  <th>New Part PPID</th>
+                  <th>No of Parts Requested</th>
+                  <th>Re Name</th>
+                  <th>Part Returned</th>
+                    </tr>
+                <tr  *ngFor="let obj of listUsers">
+                  <td><input type="button" value="Edit" (click)="updateObject(obj)"/> / <input style="background-color: rgb(226, 59, 17);"  (click)="deleteWorkFlow(obj)" type="button" value="Delete"/></td>
+                  <td>{{obj.workId}}</td><td>{{obj.userId}}</td><td>{{obj.dateReported}}</td><td>{{obj.dateResolved}}</td>
+                  <td>{{obj.modelNo}}</td><td>{{obj.serviceTag}}</td><td>{{obj.problemReported}}</td><td>{{obj.userName}}</td>
+                  <td>{{obj.vertical}}</td>
+                  <td>{{obj.serialNumber}}</td>
+                  <td>{{obj.solutionProvided}}</td>
+                  <td>{{obj.fultyPartPdid}}</td>
+                  <td>{{obj.newPartPpid}}</td>
+                  <td>{{obj.noofPartsRequested}}</td>
+                  <td>{{obj.reName}}</td>
+                  <td>{{obj.partReturned}}</td>
+                
+                </tr>
+              </table>
+                
+            <!-- Start Pagination
+            {{dataSource}}
+              <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+                
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.workId}} </td>
+                </ng-container>
+              
+                
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+                </ng-container>
+              
+                
+                <ng-container matColumnDef="weight">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+                  <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                </ng-container>
+              
+                
+                <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
+                  <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            END Pagination
+            -->
+              
+            </div>
+</div>
+<router-outlet></router-outlet>

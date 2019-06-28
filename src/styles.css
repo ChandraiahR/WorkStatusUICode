@@ -1,0 +1,116 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+th,td{
+  text-align: left;
+}
+
+input, select, option { 
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; 
+  box-sizing: border-box;  
+}
+
+table input[type=button], input[type=submit], input[type=reset]{
+  display: inline-block;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  margin: 4px 2px;
+  border-radius: 15px;
+}
+
+table input[type=submit] .deletebutton{
+  background-color: rgb(226, 59, 17);
+}
+
+
+
+
+.btn-group .button,.buttonright {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: left;
+}
+
+.btn-group .button:hover,.buttonright:hover {
+  background-color: #3e8e41;
+}
+
+#centerDiv {
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  width:30em;
+  height:18em;
+  margin-top: -9em; /*set to a negative number 1/2 of your height*/
+  margin-left: -15em; /*set to a negative number 1/2 of your width*/
+  
+}
+
+.btn-group .buttonright{
+  float: right;
+ }
+
+/* table input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {background-color: #3e8e41}
+
+table input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}*/
+
+table input[type=text],input[type=password], select {
+  width:200px;
+  height:30px;
+  border : 1px #ccc solid;
+  vertical-align:top;
+} 
+
+table #customers {
+    width: 100%;
+    table-layout: auto;
+  }
+
+  #customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    white-space: nowrap;
+    text-align: left;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  /* #customers th,#customers td{
+    column-width: 40px
+  } */
